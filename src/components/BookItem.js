@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import {BookConsumer} from '../context/BookContext';
 
 export default class BookItem extends Component {
   static propTypes = {
@@ -30,6 +31,8 @@ export default class BookItem extends Component {
     const bookCompleted = book.status === 'completed';
     
      const element = (
+       <BookConsumer>
+         {({showAuthors}) => (
         <div className="view">
           <input className="toggle"
                  type="checkbox"
@@ -38,10 +41,14 @@ export default class BookItem extends Component {
           <label>
             {volumeInfo.title}
           </label>
+          {showAuthors ? 
           <p style={{fontSize: '12px', textAlign: 'right', marginRight: '10px'}}>
             Author: {volumeInfo.authors[0]}
-          </p>
+          </p> : null
+          }
         </div>
+         )}
+        </BookConsumer>
       )
 
     return (
