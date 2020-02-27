@@ -28,7 +28,7 @@ export default class BookItem extends Component {
   render() {
     const { book, updateBookStatus} = this.props
     const {volumeInfo} = book;
-    const bookCompleted = book.status === 'completed';
+    const bookCompleted = book.completed;
     
      const element = (
        <BookConsumer>
